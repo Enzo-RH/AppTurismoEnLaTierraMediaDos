@@ -7,12 +7,12 @@ import jdbc.ConnectionProvider;
 public class UsuarioDAO {
 	
 	public Usuario aUsuario(ResultSet resultados) throws SQLException{
-		return new Usuario(resultados.getString(1), resultados.getInt(2), resultados.getDouble(3));
+		return new Usuario(resultados.getString(2), resultados.getInt(3), resultados.getDouble(4));
 	}
 	
 	public Usuario encontrarUsuario(String nombreBuscado) throws SQLException {
 		
-		String sql = "SELECT * FROM usuario WHERE nombre LIKE '%" + nombreBuscado + "%'";
+		String sql = "SELECT * FROM usuario WHERE nombre = ?";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setString(1, nombreBuscado);
@@ -22,7 +22,6 @@ public class UsuarioDAO {
 		
 		if (resultados.next()) {
 			usuario = aUsuario(resultados);
-			
 		}
 		
 		return usuario;
