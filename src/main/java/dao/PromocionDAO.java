@@ -22,9 +22,11 @@ public class PromocionDAO {
 		ResultSet resultados = statement.executeQuery();
 		
 		List<Promocion> listaPromociones = new LinkedList<Promocion>();
+		Promocion promos;
 		
 		if (resultados.next()) {
-			listaPromociones.add(aPromocion(resultados));
+			promos = aPromocion(resultados);
+			listaPromociones.add(promos);
 			
 		}
 		

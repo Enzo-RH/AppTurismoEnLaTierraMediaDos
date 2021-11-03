@@ -16,6 +16,7 @@ public class App {
 		UsuarioDAO user = new UsuarioDAO();
 		PromocionDAO promo = new PromocionDAO();
 		Usuario usuarioP = new Usuario();
+		
 		String nombreUsuario;
 		
 		/*PRIMERO SE BUSCA AL USUARIO EN LA BD, la idea es que sea un bucle en donde si no lo encuentra, avise que es usuario inválido y lo vuelva a pedir
@@ -32,9 +33,10 @@ public class App {
 		if(nombreUsuario.equalsIgnoreCase(names)){
 			System.out.println("Bienvenido\n" + usuarioP.toString());
 			System.out.println("-------------\nEstas son las promociones: ");
+			
 			Iterator<Promocion> iter = promo.mostrarPromociones().iterator();
 			while(iter.hasNext()){
-				System.out.println(promo.mostrarPromociones().toString());
+				System.out.println(promo.toString());
 			}
 			
 		}else {
