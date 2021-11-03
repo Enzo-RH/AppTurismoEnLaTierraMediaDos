@@ -11,7 +11,7 @@ import jdbc.ConnectionProvider;
 public class PromocionDAO {
 	
 	public Promocion aPromocion(ResultSet resultados) throws SQLException{
-		return new Promocion(resultados.getString(2), resultados.getDouble(3), resultados.getInt(4), resultados.getNString(8), null);
+		return new Promocion(resultados.getString(2), resultados.getDouble(3), resultados.getInt(4), resultados.getString(8), null);
 	}
 	
 	public List<Promocion> mostrarPromociones() throws SQLException {

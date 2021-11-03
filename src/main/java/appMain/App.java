@@ -36,7 +36,7 @@ public class App {
 			
 			Iterator<Promocion> iter = promo.mostrarPromociones().iterator();
 			while(iter.hasNext()){
-				System.out.println(promo.toString());
+				System.out.println(iter.next().toString());
 			}
 			
 		}else {
