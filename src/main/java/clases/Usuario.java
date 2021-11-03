@@ -7,11 +7,11 @@ public class Usuario {
 	private String nombre;
 	private Integer monedas;
 	private Double tiempo;
-	private TipoAtraccion preferencia;
+	private String preferencia;
 	private List<Atraccion> itinerario;
 	
 	
-	public Usuario(String nombre, Integer monedas, Double tiempo, TipoAtraccion preferencia, List<Atraccion> itinerario) {
+	public Usuario(String nombre, Integer monedas, Double tiempo, String preferencia, List<Atraccion> itinerario) {
 		this.setNombre(nombre);
 		this.setMonedas(monedas);
 		this.setTiempo(tiempo);
@@ -53,11 +53,11 @@ public class Usuario {
 		this.tiempo = tiempo;
 	}
 
-	public TipoAtraccion getPreferencia() {
+	public String getPreferencia() {
 		return preferencia;
 	}
 
-	public void setPreferencia(TipoAtraccion preferencia) {
+	public void setPreferencia(String preferencia) {
 		this.preferencia = preferencia;
 	}
 
@@ -71,8 +71,8 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario nombre: " + nombre + ", monedas: " + monedas + ", tiempo " + tiempo + ", preferencia "
-				+ preferencia + ", itinerario " + itinerario;
+		return "Nombre: " + nombre + "\nMonedas: " + monedas + "\nTiempo: " + tiempo + "\nPreferencia: "
+				+ preferencia + "\nItinerario: " + itinerario;
 	}
 	
 	

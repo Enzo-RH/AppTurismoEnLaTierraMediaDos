@@ -27,12 +27,14 @@ public class App {
 		String names = usuarioP.getNombre();
 		
 		if(nombreUsuario.equalsIgnoreCase(names)){
-			System.out.println("Bienvenido " + names);
+			System.out.println("Bienvenido\n" + usuarioP.toString());
+			System.out.println("-------------\nEstas son las ofertas de hoy: ");
+			
 		}else {
 			System.out.println("Ususario incorrecto");
 		}
 		
-		System.out.println(usuarioP.toString());
+		
 
 	}
 
