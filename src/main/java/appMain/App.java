@@ -3,7 +3,9 @@ package appMain;
 import java.sql.SQLException;
 import java.util.*;
 
+import clases.Promocion;
 import clases.Usuario;
+import dao.PromocionDAO;
 import dao.UsuarioDAO;
 
 public class App {
@@ -12,6 +14,7 @@ public class App {
 		
 		Scanner sc = new Scanner (System.in);
 		UsuarioDAO user = new UsuarioDAO();
+		PromocionDAO promo = new PromocionDAO();
 		Usuario usuarioP = new Usuario();
 		String nombreUsuario;
 		
@@ -28,7 +31,11 @@ public class App {
 		
 		if(nombreUsuario.equalsIgnoreCase(names)){
 			System.out.println("Bienvenido\n" + usuarioP.toString());
-			System.out.println("-------------\nEstas son las ofertas de hoy: ");
+			System.out.println("-------------\nEstas son las promociones: ");
+			Iterator<Promocion> iter = promo.mostrarPromociones().iterator();
+			while(iter.hasNext()){
+				System.out.println(promo.mostrarPromociones().toString());
+			}
 			
 		}else {
 			System.out.println("Ususario incorrecto");

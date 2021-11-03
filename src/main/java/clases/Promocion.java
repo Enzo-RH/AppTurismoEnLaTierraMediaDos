@@ -64,7 +64,7 @@ public class Promocion {
 
 	@Override
 	public String toString() {
-		return "Promocion nombre: " + nombre + ", tiempo: " + tiempo + ", costo: " + costo + ", tipo: " + tipo
+		return "nombre: " + nombre + ", tiempo: " + tiempo + ", costo: " + costo + ", tipo: " + tipo
 				+ ", atracciones: " + atracciones;
 	}
 	
