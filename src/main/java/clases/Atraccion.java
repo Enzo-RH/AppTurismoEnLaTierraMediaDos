@@ -3,11 +3,11 @@ package clases;
 public class Atraccion {
 	
 	private String nombre;
-	private int costo, cupo;
+	private Integer costo, cupo;
 	private double tiempo;
 	private TipoAtraccion tipo;
 	
-	public Atraccion(String nombre, int costo, int cupo, double tiempo, TipoAtraccion tipo) {
+	public Atraccion(String nombre, Integer costo, Integer cupo, Double tiempo, TipoAtraccion tipo) {
 		this.nombre = nombre;
 		this.costo = costo;
 		this.cupo = cupo;
@@ -57,10 +57,12 @@ public class Atraccion {
 	public void setTipo(TipoAtraccion tipo) {
 		this.tipo = tipo;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Nombre: " + nombre + ", costo: " + costo + ", cupo: " + cupo + ", tiempo: " + tiempo + ", tipo: "
+				+ tipo;
+	}
 	
 	
 

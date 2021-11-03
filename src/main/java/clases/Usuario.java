@@ -10,10 +10,6 @@ public class Usuario {
 	private TipoAtraccion preferencia;
 	private List<Atraccion> itinerario;
 	
-	private aceptarItinerario(List<Atraccion> unItinerario) {
-		
-	}
-	
 	
 	public Usuario(String nombre, Integer monedas, Double tiempo, TipoAtraccion preferencia, List<Atraccion> itinerario) {
 		this.setNombre(nombre);
