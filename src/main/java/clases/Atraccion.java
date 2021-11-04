@@ -3,11 +3,12 @@ package clases;
 public class Atraccion {
 	
 	private String nombre;
-	private Integer costo, cupo;
+	private Integer idAtraccion, costo, cupo;
 	private double tiempo;
-	private TipoAtraccion tipo;
+	private String tipo;
 	
-	public Atraccion(String nombre, Integer costo, Integer cupo, Double tiempo, TipoAtraccion tipo) {
+	public Atraccion(Integer idAtraccion, String nombre, Integer costo, Integer cupo, Double tiempo, String tipo) {
+		this.idAtraccion = idAtraccion;
 		this.nombre = nombre;
 		this.costo = costo;
 		this.cupo = cupo;
@@ -50,20 +51,27 @@ public class Atraccion {
 		this.tiempo = tiempo;
 	}
 
-	public TipoAtraccion getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoAtraccion tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	public Integer getIdAtraccion() {
+		return idAtraccion;
+	}
+
+	public void setIdAtraccion(Integer idAtraccion) {
+		this.idAtraccion = idAtraccion;
 	}
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + ", costo: " + costo + ", cupo: " + cupo + ", tiempo: " + tiempo + ", tipo: "
-				+ tipo;
+		return "idAtraccion= " + idAtraccion + "\nnombre= "+ nombre + "\ncosto= " + costo + "\ncupo= " + cupo
+				+ "\ntiempo= " + tiempo + "\ntipo= " + tipo;
 	}
-	
 	
 
 }
