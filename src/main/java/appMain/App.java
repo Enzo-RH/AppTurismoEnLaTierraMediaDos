@@ -18,6 +18,7 @@ public class App {
 		PromocionDAO promo = new PromocionDAO();
 		AtraccionDAO atrac = new AtraccionDAO();
 		Usuario usuarioP = new Usuario();
+		boolean condicion = true;
 
 		String nombreUsuario;
 
@@ -36,6 +37,8 @@ public class App {
 		String names = usuarioP.getNombre();
 
 		if (nombreUsuario.equalsIgnoreCase(names)) {
+			
+			//Si lo encuentra lo muestra por pantalla y luego le ofrece las promociones y atracciones
 			System.out.println("Bienvenido\n" + usuarioP.toString());
 			System.out.println("-------------\nEstas son las promociones y atracciones ");
 
@@ -50,37 +53,53 @@ public class App {
 			}
 			
 			
+			Iterator<Atraccion> iterDos = usuarioP.getItinerario().iterator();
+			//Le pide que elija los que quiere comprar y se suman a su itinerario
+			while(condicion){
+				System.out.println("Ingrese el numero de la que desee comprar: (9 para salir)");
+				int eleccion = sc.nextInt();
+				
+				switch (eleccion) {
+				case 1:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 2:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 3:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 4:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 5:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 6:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 7:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 8:
+					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
+					break;
+				case 9:
+					condicion = false;
+					break;
 
-			switch (eleccion) {
-			case 1:
-
-				break;
-			case 2:
-
-				break;
-			case 3:
-
-				break;
-			case 4:
-
-				break;
-			case 5:
-
-				break;
-			case 6:
-
-				break;
-			case 7:
-
-				break;
-			case 8:
-
-				break;
-
-			default:
-				break;
+				default:
+					System.out.println("Numero equivocado, vuelva a intentarlo");
+					break;
+				}
+				
+				//se muestra el itinerario
+				while (iterDos.hasNext()) {
+					System.out.println(iterDos.next().toString());
+				}
 			}
 
+			
 		} else {
 			System.out.println("Ususario incorrecto");
 		}

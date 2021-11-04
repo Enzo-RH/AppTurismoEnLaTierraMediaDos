@@ -32,4 +32,14 @@ public class AtraccionDAO {
 		return listaAtracciones;
 		
 	}
+	
+	
+	public Atraccion encontrarAtraccion(Integer unNumero) throws SQLException {
+		String sql = "SELECT * FROM atraccion WHERE idAtraccion = ?" ;
+		Connection conn = ConnectionProvider.getConnection();
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, unNumero);
+		ResultSet atraccionBD = statement.executeQuery();
+		return aAtraccion(atraccionBD);
+	}
 }
