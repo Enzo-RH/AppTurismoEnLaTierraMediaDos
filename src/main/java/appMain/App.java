@@ -18,6 +18,7 @@ public class App {
 		PromocionDAO promo = new PromocionDAO();
 		AtraccionDAO atrac = new AtraccionDAO();
 		Usuario usuarioP = new Usuario();
+		usuarioP.setItinerario(null);
 		boolean condicion = true;
 
 		String nombreUsuario;
@@ -47,7 +48,7 @@ public class App {
 				System.out.println(iterP.next().toString());
 			}
 
-			Iterator<Atraccion> iterA = atrac.mostrarPromociones().iterator();
+			Iterator<Atraccion> iterA = atrac.mostrarAtracciones().iterator();
 			while (iterA.hasNext()) {
 				System.out.println(iterA.next().toString());
 			}

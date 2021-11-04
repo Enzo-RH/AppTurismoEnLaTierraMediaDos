@@ -26,8 +26,7 @@ public class PromocionDAO {
 		
 		if (resultados.next()) {
 			promos = aPromocion(resultados);
-			listaPromociones.add(promos);
-			
+			listaPromociones.add(promos);	
 		}
 		
 		return listaPromociones;
