@@ -22,7 +22,7 @@ public class UsuarioDAO {
 
 		Usuario usuario = null;
 
-		if (resultados.next()) {
+		while(resultados.next()) {
 			usuario = aUsuario(resultados);
 		}
 

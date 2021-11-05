@@ -32,34 +32,35 @@ public class App {
 		System.out.println("Bienvedo al sistema de Turismo en la Tierra Media"
 				+ "\nPor favor ingrese su nombre: (Eowyn, Gandalf, Sam, Galadriel)");
 		nombreUsuario = sc.nextLine();
-		sc.close();
 
 		usuarioP = user.encontrarUsuario(nombreUsuario);
 		String names = usuarioP.getNombre();
+		Integer eleccion;
 
 		if (nombreUsuario.equalsIgnoreCase(names)) {
-			
-			//Si lo encuentra lo muestra por pantalla y luego le ofrece las promociones y atracciones
+
+			// Si lo encuentra lo muestra por pantalla y luego le ofrece las promociones y
+			// atracciones
 			System.out.println("Bienvenido\n" + usuarioP.toString());
-			System.out.println("-------------\nEstas son las promociones y atracciones ");
+			System.out.println("-------------\n-Promociones-\n");
 
 			Iterator<Promocion> iterP = promo.mostrarPromociones().iterator();
 			while (iterP.hasNext()) {
-				System.out.println(iterP.next().toString());
+				System.out.println(iterP.next().toString() + "\n-");
 			}
+
+			System.out.println("--------------\n-Atracciones-\n");
 
 			Iterator<Atraccion> iterA = atrac.mostrarAtracciones().iterator();
 			while (iterA.hasNext()) {
-				System.out.println(iterA.next().toString());
+				System.out.println(iterA.next().toString() + "\n-");
 			}
-			
-			
-			Iterator<Atraccion> iterDos = usuarioP.getItinerario().iterator();
-			//Le pide que elija los que quiere comprar y se suman a su itinerario
-			while(condicion){
+
+			// Le pide que elija los que quiere comprar y se suman a su itinerario
+			while (condicion) {
 				System.out.println("Ingrese el numero de la que desee comprar: (9 para salir)");
-				int eleccion = sc.nextInt();
-				
+				eleccion = sc.nextInt();
+
 				switch (eleccion) {
 				case 1:
 					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
@@ -93,17 +94,17 @@ public class App {
 					System.out.println("Numero equivocado, vuelva a intentarlo");
 					break;
 				}
-				
-				//se muestra el itinerario
-				while (iterDos.hasNext()) {
-					System.out.println(iterDos.next().toString());
-				}
+
+				/*
+				 * se muestra el itinerario while (iterDos.hasNext()) {
+				 * System.out.println(iterDos.next().toString()); }
+				 */
 			}
 
-			
 		} else {
 			System.out.println("Ususario incorrecto");
 		}
+
 
 	}
 
