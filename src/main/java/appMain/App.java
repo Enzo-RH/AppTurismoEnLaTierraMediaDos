@@ -61,7 +61,7 @@ public class App {
 				System.out.println("Ingrese el numero de la que desee comprar: (9 para salir)");
 				eleccion = sc.nextInt();
 
-				switch (eleccion) {
+				/*switch (eleccion) {
 				case 1:
 					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
 					break;

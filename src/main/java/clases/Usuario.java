@@ -8,10 +8,10 @@ public class Usuario {
 	private Integer monedas;
 	private Double tiempo;
 	private String preferencia;
-	private List<Atraccion> itinerario;
+	private Itinerario itinerario;
 	
 	
-	public Usuario(String nombre, Integer monedas, Double tiempo, String preferencia, List<Atraccion> itinerario) {
+	public Usuario(String nombre, Integer monedas, Double tiempo, String preferencia, Itinerario itinerario) {
 		this.setNombre(nombre);
 		this.setMonedas(monedas);
 		this.setTiempo(tiempo);
@@ -61,11 +61,11 @@ public class Usuario {
 		this.preferencia = preferencia;
 	}
 
-	public List<Atraccion> getItinerario() {
+	public Itinerario getItinerario() {
 		return itinerario;
 	}
 
-	public void setItinerario(List<Atraccion> itinerario) {
+	public void setItinerario(Itinerario itinerario) {
 		this.itinerario = itinerario;
 	}
 
