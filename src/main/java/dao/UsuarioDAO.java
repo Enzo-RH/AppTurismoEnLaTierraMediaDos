@@ -21,9 +21,12 @@ public class UsuarioDAO {
 		ResultSet resultados = statement.executeQuery();
 
 		Usuario usuario = null;
+		ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
 
 		while(resultados.next()) {
 			usuario = aUsuario(resultados);
+			usuario.setItinerario(itinerarioDAO.encontrarItinerario(null));
+			
 		}
 
 		return usuario;

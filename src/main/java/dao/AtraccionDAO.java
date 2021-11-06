@@ -51,4 +51,20 @@ public class AtraccionDAO {
 		return rows;
 
 	}
+	
+	public List<Atraccion> atraccionesDeItienrario() throws SQLException {
+		String sql = "SELECT * FROM atraccion WHERE atraccion.idAtraccion = atraccionesEnItinerario.id_Atraccion";
+		Connection conn = ConnectionProvider.getConnection();
+		PreparedStatement statement = conn.prepareStatement(sql);
+		ResultSet resultados = statement.executeQuery();
+		List<Atraccion> listaAtracciones = new LinkedList<Atraccion>();
+
+		while (resultados.next()) {
+			listaAtracciones.add(aAtraccion(resultados));
+		}
+
+		return listaAtracciones;
+
+	}
+	
 }

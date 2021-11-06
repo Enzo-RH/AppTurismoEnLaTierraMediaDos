@@ -3,12 +3,15 @@ package clases;
 import java.util.List;
 
 public class Itinerario {
-
+	
+	
+	private Integer id;
 	private Integer costoTotal;
 	private Double tiempoTotal;
 	private List<Atraccion> atracciones;
 
-	public Itinerario(Integer costoTotal, Double tiempoTotal, List<Atraccion> atracciones) {
+	public Itinerario(Integer id, Integer costoTotal, Double tiempoTotal, List<Atraccion> atracciones) {
+		this.id = id;
 		this.costoTotal = costoTotal;
 		this.tiempoTotal = tiempoTotal;
 		this.atracciones = atracciones;
@@ -41,9 +44,17 @@ public class Itinerario {
 		this.atracciones = atracciones;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	@Override
 	public String toString() {
-		return "Itinerario [costoTotal=" + costoTotal + ", tiempoTotal=" + tiempoTotal + ", atracciones=" + atracciones;
+		return "Itinerario" + ", id= "+ id + "costoTotal=" + costoTotal + ", tiempoTotal=" + tiempoTotal + ", atracciones=" + atracciones;
 	}
 
 }
