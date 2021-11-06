@@ -72,7 +72,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Nombre: " + nombre + "\nMonedas: " + monedas + "\nTiempo: " + tiempo + "\nPreferencia: "
-				+ preferencia + "\nItinerario: " + itinerario;
+				+ preferencia + "\nItinerario: " + itinerario.toString();
 	}
 	
 	

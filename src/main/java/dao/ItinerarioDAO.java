@@ -13,14 +13,14 @@ public class ItinerarioDAO {
 	
 	// Transforma el ResultSet en un obj Itinerario // modificar
 		public Itinerario aItinerario(ResultSet resultados) throws SQLException {
-			return new Usuario(resultados.getString(2), resultados.getInt(3), resultados.getDouble(4),
+			return new Usuario(resultados.getInt(3), resultados.getDouble(2),
 					resultados.getString(7), null);
 		}
 
 		// Encuentra un usuario y lo devuelve
-		public Usuario encontrarUsuario(String nombreBuscado) throws SQLException {
+		public Itinerario encontrarItinerario(Integer usuarioId) throws SQLException {
 
-			String sql = "SELECT * FROM usuario LEFT JOIN tipoAtraccion ON usuario.id_tipo = tipoAtraccion.idTipo WHERE usuario.nombre = ? ";
+			String sql = "SELECT * FROM itinerario RIGTH JOIN atraccionEnItinerario ON usuario.id_tipo = tipoAtraccion.idTipo WHERE usuario.nombre = ? ";
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, nombreBuscado);
@@ -29,7 +29,7 @@ public class ItinerarioDAO {
 			Usuario usuario = null;
 
 			while(resultados.next()) {
-				usuario = aUsuario(resultados);
+				usuario = aItinerario(resultados);
 			}
 
 			return usuario;

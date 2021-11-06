@@ -17,6 +17,7 @@ public class App {
 		UsuarioDAO user = new UsuarioDAO();
 		PromocionDAO promo = new PromocionDAO();
 		AtraccionDAO atrac = new AtraccionDAO();
+		ItinerarioDAO itiner = new ItinerarioDAO;
 		Usuario usuarioP = new Usuario();
 		usuarioP.setItinerario(null);
 		boolean condicion = true;
