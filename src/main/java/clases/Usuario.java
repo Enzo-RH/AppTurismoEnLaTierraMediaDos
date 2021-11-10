@@ -1,7 +1,5 @@
 package clases;
 
-import java.util.List;
-
 public class Usuario {
 	
 	private Integer id;

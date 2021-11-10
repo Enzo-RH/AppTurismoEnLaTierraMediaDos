@@ -69,7 +69,7 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "idAtraccion= " + idAtraccion + "\nnombre= "+ nombre + "\ncosto= " + costo + "\ncupo= " + cupo
+		return "\n-\nidAtraccion= " + idAtraccion + "\nnombre= "+ nombre + "\ncosto= " + costo + "\ncupo= " + cupo
 				+ "\ntiempo= " + tiempo + "\ntipo= " + tipo;
 	}
 	

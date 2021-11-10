@@ -72,4 +72,15 @@ public class AtraccionDAO {
 
 	}
 	
+	// Actualiza el cupo de la atraccion
+		public int actualizarAtraccion(Integer idAtraccion) throws SQLException {
+			String sql = "UPDATE atraccion SET cupo = cupo - 1 WHERE idAtraccion = ?";
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setInt(1, idAtraccion);
+			Integer rows = statement.executeUpdate();
+			return rows;
+
+		}
+	
 }

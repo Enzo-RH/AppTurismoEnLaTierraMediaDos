@@ -43,70 +43,41 @@ public class App {
 
 			// Si lo encuentra lo muestra por pantalla y luego le ofrece las promociones y
 			// atracciones
-			System.out.println("Bienvenido\n" + usuarioP.toString());
-			System.out.println("-------------\n-Promociones-\n");
+			System.out.println("BIENVENIDO\nINFORMACION DE USUARIO:\n" + usuarioP.toString());
+			System.out.println("-------------\n-Promociones disponibles-\n");
 
 			Iterator<Promocion> iterP = promo.mostrarPromociones().iterator();
 			while (iterP.hasNext()) {
 				System.out.println(iterP.next().toString() + "\n-");
 			}
 
-			System.out.println("--------------\n-Atracciones-\n");
+			System.out.println("--------------\n-Atracciones disponibles-\n");
 
 			Iterator<Atraccion> iterA = atrac.mostrarAtracciones().iterator();
 			while (iterA.hasNext()) {
-				System.out.println(iterA.next().toString() + "\n-");
+				System.out.println(iterA.next().toString());
 			}
 
 			// Le pide que elija los que quiere comprar y se suman a su itinerario
 			while (condicion) {
-				System.out.println("Ingrese el numero de la que desee comprar: (9 para salir)");
+				System.out.println("Ingrese el id de la atraccion que desee comprar: 0 para salir");
 				eleccion = sc.nextInt();
-
-				/*switch (eleccion) {
-				case 1:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 2:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 3:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 4:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 5:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 6:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 7:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 8:
-					(usuarioP.getItinerario()).add(atrac.encontrarAtraccion(eleccion));
-					break;
-				case 9:
-					condicion = false;
-					break;
-
-				default:
-					System.out.println("Numero equivocado, vuelva a intentarlo");
-					break;
+				
+				if (usuarioP.getItinerario().getAtracciones().contains(atrac.encontrarAtraccion(eleccion)) && (eleccion < 1) && (eleccion > (atrac.mostrarAtracciones().size()))) {
+					System.out.println("Esta atracción ya forma parte de us itinerario o el numero es incorrecto");
+				} else {
+					usuarioP.getItinerario().getAtracciones().add(atrac.encontrarAtraccion(eleccion));
+					itiner.actualizarItinerario(atrac.encontrarAtraccion(eleccion), usuarioP.getId());
+					atrac.actualizarAtraccion(eleccion);
+					System.out.println("Atracción agregada exitosamente");
 				}
-
-				/*
-				 * se muestra el itinerario while (iterDos.hasNext()) {
-				 * System.out.println(iterDos.next().toString()); }
-				 */
+				
 			}
 
 		} else {
+			//Esto no funciona porque primero larga la SQLException
 			System.out.println("Ususario incorrecto");
 		}
-
 
 	}
 

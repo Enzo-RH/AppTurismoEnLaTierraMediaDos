@@ -25,7 +25,6 @@ public class ItinerarioDAO {
 		ResultSet resultados = statement.executeQuery();
 		Itinerario itinerario = null;
 		AtraccionDAO atraccionDAO = new AtraccionDAO();
-		
 
 		while (resultados.next()) {
 			itinerario = aItinerario(resultados);
@@ -37,17 +36,29 @@ public class ItinerarioDAO {
 	}
 
 	// Actualiza el tiempo y el presupuesto del itinerario
-	public int updateItinerario(Atraccion unaAtraccion) throws SQLException {
-
-		String sql = "UPDATE itinerario SET moneda = moneda + ?, tiempo = tiempo + ?";
+	public int actualizarItinerario(Atraccion unaAtraccion, Integer idItinerario) throws SQLException {
+		String sql = "UPDATE itinerario SET moneda = moneda + ?, tiempo = tiempo + ? WHERE idItinerario = ?";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setInt(1, unaAtraccion.getCosto());
 		statement.setDouble(2, unaAtraccion.getTiempo());
+		statement.setInt(3, idItinerario);
 		Integer rows = statement.executeUpdate();
-
 		return rows;
 
 	}
+	//Agrega una atraccion al itinerario
+	public int agregarAtraccion(Integer idItinerario, Integer idAtraccion) throws SQLException {
+		String sql = "INSERT INTO atraccionesEnIitinerario VALUES(?,?);";
+		Connection conn = ConnectionProvider.getConnection();
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, idItinerario);
+		statement.setInt(2, idAtraccion);
+		Integer rows = statement.executeUpdate();
+		return rows;
+
+	}
+	
+	
 
 }

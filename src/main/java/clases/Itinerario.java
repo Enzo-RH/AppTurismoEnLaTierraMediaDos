@@ -54,7 +54,7 @@ public class Itinerario {
 	
 	@Override
 	public String toString() {
-		return "id= "+ id + " costoTotal=" + costoTotal + " tiempoTotal=" + tiempoTotal + " atracciones=" + atracciones.toString();
+		return "id= "+ id + " costoTotal=" + costoTotal + " tiempoTotal=" + tiempoTotal + " atracciones:\n" + atracciones.toString();
 	}
 
 }
