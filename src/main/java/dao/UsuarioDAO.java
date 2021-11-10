@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.*;
+
+import clases.Atraccion;
 import clases.Usuario;
 import jdbc.ConnectionProvider;
 
@@ -33,17 +35,13 @@ public class UsuarioDAO {
 	}
 
 	// Actualiza el tiempo y el presupuesto del usuario
-	public int updateUsuario(Usuario unUsuario) throws SQLException {
-
-		String sql = "UPDATE usuario SET moneda = moneda - ?, tiempo = tiempo - ?";
-		Connection conn = ConnectionProvider.getConnection();
-		PreparedStatement statement = conn.prepareStatement(sql);
-		statement.setInt(1, unUsuario.getMonedas());
-		statement.setDouble(2, unUsuario.getTiempo());
-		Integer rows = statement.executeUpdate();
-		
-		return rows;
-
+		public int actualizarItinerario(Integer idUsuario) throws SQLException {
+			String sql = "UPDATE itinerario SET moneda = moneda - ?, tiempo = tiempo - ? WHERE idUsuario = ?";
+			Connection conn = ConnectionProvider.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setInt(1, idUsuario);
+			Integer rows = statement.executeUpdate();
+			return rows;
 	}
 
 }

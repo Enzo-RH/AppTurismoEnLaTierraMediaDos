@@ -37,7 +37,7 @@ public class ItinerarioDAO {
 
 	// Actualiza el tiempo y el presupuesto del itinerario
 	public int actualizarItinerario(Atraccion unaAtraccion, Integer idItinerario) throws SQLException {
-		String sql = "UPDATE itinerario SET moneda = moneda + ?, tiempo = tiempo + ? WHERE idItinerario = ?";
+		String sql = "UPDATE itinerario SET costoTotal = costoTotal + ?, tiempoTotal = tiempoTotal + ? WHERE idItinerario = ?";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setInt(1, unaAtraccion.getCosto());
