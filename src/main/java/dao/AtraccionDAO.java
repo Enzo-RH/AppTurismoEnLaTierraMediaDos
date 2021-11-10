@@ -43,7 +43,7 @@ public class AtraccionDAO {
 	}
 
 	// Actualiza el tiempo y el presupuesto del usuario
-	public int updateCupo() throws SQLException {
+	public int actualizarCupo() throws SQLException {
 		String sql = "UPDATE atraccion SET cupo = cupo - 1";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
