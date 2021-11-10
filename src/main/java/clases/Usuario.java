@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Usuario {
 	
+	private Integer id;
 	private String nombre;
 	private Integer monedas;
 	private Double tiempo;
@@ -11,13 +12,15 @@ public class Usuario {
 	private Itinerario itinerario;
 	
 	
-	public Usuario(String nombre, Integer monedas, Double tiempo, String preferencia, Itinerario itinerario) {
+	public Usuario(Integer id, String nombre, Integer monedas, Double tiempo, String preferencia, Itinerario itinerario) {
+		this.setId(id);
 		this.setNombre(nombre);
 		this.setMonedas(monedas);
 		this.setTiempo(tiempo);
 		this.setPreferencia(preferencia);
 		this.itinerario = itinerario;
 	}
+	
 	public Usuario(String nombre, Integer monedas, Double tiempo) {
 		this.setNombre(nombre);
 		this.setMonedas(monedas);
@@ -67,6 +70,13 @@ public class Usuario {
 
 	public void setItinerario(Itinerario itinerario) {
 		this.itinerario = itinerario;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import jdbc.ConnectionProvider;
 public class UsuarioDAO {
 	// Transforma el ResultSet en un obj Usuario
 	public Usuario aUsuario(ResultSet resultados) throws SQLException {
-		return new Usuario(resultados.getString(2), resultados.getInt(3), resultados.getDouble(4),
+		return new Usuario(resultados.getInt(1), resultados.getString(2), resultados.getInt(3), resultados.getDouble(4),
 				resultados.getString(7), null);
 	}
 
@@ -25,8 +25,7 @@ public class UsuarioDAO {
 
 		while(resultados.next()) {
 			usuario = aUsuario(resultados);
-			usuario.setItinerario(itinerarioDAO.encontrarItinerario(null));
-			
+			usuario.setItinerario(itinerarioDAO.encontrarItinerario(usuario.getId()));
 		}
 
 		return usuario;

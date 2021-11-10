@@ -4,12 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
-import dao.AtraccionDAO;
 import clases.Atraccion;
 import clases.Itinerario;
-import clases.Usuario;
 import jdbc.ConnectionProvider;
 
 public class ItinerarioDAO {
@@ -28,18 +24,19 @@ public class ItinerarioDAO {
 		statement.setInt(1, usuarioId);
 		ResultSet resultados = statement.executeQuery();
 		Itinerario itinerario = null;
-		AtraccionDAO atraccio = new AtraccionDAO();
+		AtraccionDAO atraccionDAO = new AtraccionDAO();
 		
+
 		while (resultados.next()) {
 			itinerario = aItinerario(resultados);
-			itinerario.setAtracciones(atraccio.atraccionesDeItienrario(itinerario.getId()));
+			itinerario.setAtracciones(atraccionDAO.atraccionesDeItienrario(itinerario.getId()));
 		}
 
 		return itinerario;
 
 	}
 
-	 //Actualiza el tiempo y el presupuesto del itinerario
+	// Actualiza el tiempo y el presupuesto del itinerario
 	public int updateItinerario(Atraccion unaAtraccion) throws SQLException {
 
 		String sql = "UPDATE itinerario SET moneda = moneda + ?, tiempo = tiempo + ?";
@@ -52,6 +49,5 @@ public class ItinerarioDAO {
 		return rows;
 
 	}
-	
 
 }

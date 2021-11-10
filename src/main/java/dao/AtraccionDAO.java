@@ -13,12 +13,12 @@ public class AtraccionDAO {
 	// Transforma el ResultSet en un obj Atraccion
 	public Atraccion aAtraccion(ResultSet resultados) throws SQLException {
 		return new Atraccion(resultados.getInt(1), resultados.getString(2), resultados.getInt(3), resultados.getInt(4),
-				resultados.getDouble(5), resultados.getString(8));
+				resultados.getDouble(5), resultados.getString(6));
 	}
 
 	// Devuelve todas las atracciones
 	public List<Atraccion> mostrarAtracciones() throws SQLException {
-		String sql = "SELECT * FROM atraccion LEFT JOIN tipoAtraccion ON atraccion.id_tipo = tipoAtraccion.idTipo";
+		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.costo, atraccion.cupo, atraccion.tiempo, tipoAtraccion.nombre FROM atraccion LEFT JOIN tipoAtraccion ON atraccion.id_tipo = tipoAtraccion.idTipo";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
 		ResultSet resultados = statement.executeQuery();
@@ -51,19 +51,24 @@ public class AtraccionDAO {
 		return rows;
 
 	}
-	
-	public List<Atraccion> atraccionesDeItienrario() throws SQLException {
-		String sql = "SELECT * FROM atraccion WHERE atraccion.idAtraccion = atraccionesEnItinerario.id_Atraccion";
+	//Devuelve una lista de atracciones de un itineratrio determinado
+	public List<Atraccion> atraccionesDeItienrario(Integer idItinerario) throws SQLException {
+		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.costo, atraccion.cupo, atraccion.tiempo, tipoAtraccion.nombre FROM atraccionesEnItinerario, atraccion, tipoAtraccion" 
+			+	" WHERE atraccionesEnItinerario.id_Atraccion = atraccion.idAtraccion"
+			+	" AND atraccion.id_tipo = tipoAtraccion.idTipo"
+			+	" AND atraccionesEnItinerario.id_Itinerario = ?;";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, idItinerario);
 		ResultSet resultados = statement.executeQuery();
-		List<Atraccion> listaAtracciones = new LinkedList<Atraccion>();
+		
+		List<Atraccion> atraccionesDeItinerario = new LinkedList<Atraccion>();
 
 		while (resultados.next()) {
-			listaAtracciones.add(aAtraccion(resultados));
+			atraccionesDeItinerario.add(aAtraccion(resultados));
 		}
 
-		return listaAtracciones;
+		return atraccionesDeItinerario;
 
 	}
 	
