@@ -57,33 +57,38 @@ public class App {
 			while (iterA.hasNext()) {
 				System.out.println(iterA.next().toString());
 			}
-
+			
 			// Le pide que elija los que quiere comprar y se suman a su itinerario
 			while (condicion) {
 				System.out.println("Ingrese el id de la atraccion que desee comprar: 0 para salir");
 				eleccion = sc.nextInt();
 				
-				//por algún motivo no encuentra que es la misma atraccion
+				// por algún motivo no encuentra que es la misma atraccion
 				
-				if (usuarioP.getItinerario().getAtracciones().contains(atrac.encontrarAtraccion(eleccion)) && (eleccion < 1 ) && (eleccion > (atrac.mostrarAtracciones().size()))) {
-					System.out.println("Esta atracción ya forma parte de us itinerario o el numero ingresado es incorrecto");
-				} else if((usuarioP.getMonedas() - atrac.encontrarAtraccion(eleccion).getCosto() <= 0) && (usuarioP.getTiempo() - atrac.encontrarAtraccion(eleccion).getTiempo() <= 0) ) {
+				System.out.println("Esta es la cantidad de atracciones: " + atrac.mostrarAtracciones().size());
+
+				if ((eleccion < 1) || (eleccion > (atrac.mostrarAtracciones().size()))) { //este lo pasa por alto
+					System.out.println("El numero ingresado es incorrecto");
+				} else if ((usuarioP.getItinerario().getAtracciones()).contains(atrac.encontrarAtraccion(eleccion))) { //acá es donde se produce un error
+					System.out.println("Esta atracción ya forma parte de us itinerario");
+				} else if ((usuarioP.getMonedas() - atrac.encontrarAtraccion(eleccion).getCosto() <= 0)
+						&& (usuarioP.getTiempo() - atrac.encontrarAtraccion(eleccion).getTiempo() <= 0)) {
 					System.out.println("No dispone del presupuesto o tiempo necesario");
-				}else if (eleccion == 0){
+				} else if (eleccion == 0) {
 					System.out.println("Gracias por utilizar nuestros servicios");
 					condicion = false;
-				}else {
+				} else {
 					usuarioP.getItinerario().getAtracciones().add(atrac.encontrarAtraccion(eleccion));
 					itiner.actualizarItinerario(atrac.encontrarAtraccion(eleccion), usuarioP.getId());
 					atrac.actualizarAtraccion(eleccion);
 					System.out.println("Atracción agregada exitosamente");
 				}
-				
+
 				usuarioP.toString();
 			}
 
 		} else {
-			//Esto no funciona porque primero larga la SQLException
+			// Esto no funciona porque primero larga la SQLException
 			System.out.println("Ususario incorrecto");
 		}
 
