@@ -90,9 +90,9 @@ public class App {
 
 					usuarioP.getItinerario().getAtracciones().add(atrac.encontrarAtraccion(eleccion));
 					user.actualizarUsuario(usuarioP.getId(), atrac.encontrarAtraccion(eleccion).getCosto(),
-							atrac.encontrarAtraccion(eleccion).getTiempo());
-					itiner.actualizarItinerario(atrac.encontrarAtraccion(eleccion), usuarioP.getId());
-					atrac.actualizarAtraccion(eleccion);
+							atrac.encontrarAtraccion(eleccion).getTiempo()); //Se actualiza el usuario
+					itiner.actualizarItinerario(atrac.encontrarAtraccion(eleccion).getCosto(), atrac.encontrarAtraccion(eleccion).getTiempo(), usuarioP.getId()); //Se actualiza el itinerario
+					atrac.actualizarAtraccion(eleccion); //Se actualiza la atracción
 					System.out.println("Atracción agregada exitosamente");
 				}
 
