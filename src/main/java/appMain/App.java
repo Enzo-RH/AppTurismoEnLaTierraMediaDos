@@ -68,7 +68,7 @@ public class App {
 				eleccion = sc.nextInt();
 
 				if (eleccion == 0) {
-					
+
 					System.out.println("Gracias por utilizar nuestros servicios");
 					condicion = false;
 
@@ -81,16 +81,16 @@ public class App {
 
 					System.out.println("Esta atracción ya forma parte de su itinerario");
 
-				} else if ((usuarioP.getMonedas() <= 0) || (usuarioP.getTiempo() <= 0)
-						|| (atrac.encontrarAtraccion(eleccion).getCosto() > usuarioP.getMonedas())
-						|| (atrac.encontrarAtraccion(eleccion).getTiempo() > usuarioP.getMonedas())) {
+				} else if ((atrac.encontrarAtraccion(eleccion).getCosto() > usuarioP.getMonedas())
+						|| (atrac.encontrarAtraccion(eleccion).getTiempo() > usuarioP.getTiempo())) {
 
 					System.out.println("No dispone del presupuesto o tiempo necesario");
 
 				} else {
-					
+
 					usuarioP.getItinerario().getAtracciones().add(atrac.encontrarAtraccion(eleccion));
-					user.actualizarUsuario(usuarioP.getId(), atrac.encontrarAtraccion(eleccion).getCosto(), atrac.encontrarAtraccion(eleccion).getTiempo());
+					user.actualizarUsuario(usuarioP.getId(), atrac.encontrarAtraccion(eleccion).getCosto(),
+							atrac.encontrarAtraccion(eleccion).getTiempo());
 					itiner.actualizarItinerario(atrac.encontrarAtraccion(eleccion), usuarioP.getId());
 					atrac.actualizarAtraccion(eleccion);
 					System.out.println("Atracción agregada exitosamente");
