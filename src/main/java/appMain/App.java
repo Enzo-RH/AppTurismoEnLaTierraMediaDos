@@ -82,7 +82,8 @@ public class App {
 					System.out.println("Esta atracción ya forma parte de su itinerario");
 
 				} else if ((atrac.encontrarAtraccion(eleccion).getCosto() > usuarioP.getMonedas())
-						|| (atrac.encontrarAtraccion(eleccion).getTiempo() > usuarioP.getTiempo())) {
+						|| (atrac.encontrarAtraccion(eleccion).getTiempo() > usuarioP.getTiempo())
+						|| (atrac.encontrarAtraccion(eleccion).getCupo() > 0)) {
 
 					System.out.println("No dispone del presupuesto o tiempo necesario");
 
