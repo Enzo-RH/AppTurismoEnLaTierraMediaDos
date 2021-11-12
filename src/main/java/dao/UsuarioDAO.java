@@ -25,7 +25,7 @@ public class UsuarioDAO {
 		Usuario usuario = null;
 		ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
 
-		while(resultados.next()) {
+		while (resultados.next()) {
 			usuario = aUsuario(resultados);
 			usuario.setItinerario(itinerarioDAO.encontrarItinerario(usuario.getId()));
 		}
@@ -35,11 +35,13 @@ public class UsuarioDAO {
 	}
 
 	// Actualiza el tiempo y el presupuesto del usuario
-		public int actualizarItinerario(Integer idUsuario) throws SQLException {
-			String sql = "UPDATE itinerario SET moneda = moneda - ?, tiempo = tiempo - ? WHERE idUsuario = ?";
+	public int actualizarUsuario(Integer idUsuario, Integer costoAtraccion, Double tiempoAtraccion) throws SQLException {
+			String sql = "UPDATE usuario SET moneda = moneda - ?, tiempo = tiempo - ? WHERE idUsuario = ?";
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(1, idUsuario);
+			statement.setInt(1, costoAtraccion);
+			statement.setDouble(2, tiempoAtraccion);
+			statement.setInt(3, idUsuario);
 			Integer rows = statement.executeUpdate();
 			return rows;
 	}

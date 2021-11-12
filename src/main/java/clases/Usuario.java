@@ -1,16 +1,16 @@
 package clases;
 
 public class Usuario {
-	
+
 	private Integer id;
 	private String nombre;
 	private Integer monedas;
 	private Double tiempo;
 	private String preferencia;
 	private Itinerario itinerario;
-	
-	
-	public Usuario(Integer id, String nombre, Integer monedas, Double tiempo, String preferencia, Itinerario itinerario) {
+
+	public Usuario(Integer id, String nombre, Integer monedas, Double tiempo, String preferencia,
+			Itinerario itinerario) {
 		this.setId(id);
 		this.setNombre(nombre);
 		this.setMonedas(monedas);
@@ -18,7 +18,7 @@ public class Usuario {
 		this.setPreferencia(preferencia);
 		this.itinerario = itinerario;
 	}
-	
+
 	public Usuario(String nombre, Integer monedas, Double tiempo) {
 		this.setNombre(nombre);
 		this.setMonedas(monedas);
@@ -29,7 +29,6 @@ public class Usuario {
 
 	}
 
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -69,20 +68,19 @@ public class Usuario {
 	public void setItinerario(Itinerario itinerario) {
 		this.itinerario = itinerario;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + "\nMonedas: " + monedas + "\nTiempo: " + tiempo + "\nPreferencia: "
-				+ preferencia + "\nItinerario: " + itinerario.toString();
+		return "Nombre: " + nombre + "\nMonedas: " + monedas + "\nTiempo: " + tiempo + "\nPreferencia: " + preferencia
+				+ "\nItinerario: " + itinerario.toString();
 	}
-	
-	
 
 }

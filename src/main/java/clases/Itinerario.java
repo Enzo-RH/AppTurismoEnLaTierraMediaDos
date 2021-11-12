@@ -3,8 +3,7 @@ package clases;
 import java.util.List;
 
 public class Itinerario {
-	
-	
+
 	private Integer id;
 	private Integer costoTotal;
 	private Double tiempoTotal;
@@ -51,10 +50,11 @@ public class Itinerario {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "id= "+ id + " costoTotal=" + costoTotal + " tiempoTotal=" + tiempoTotal + " atracciones:\n" + atracciones.toString();
+		return "id= " + id + " costoTotal=" + costoTotal + " tiempoTotal=" + tiempoTotal + " atracciones:\n"
+				+ atracciones.toString();
 	}
 
 }

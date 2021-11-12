@@ -1,10 +1,10 @@
 package appMain;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.sql.SQLException;
 import java.util.*;
-import clases.Atraccion;
-import clases.Promocion;
-import clases.Usuario;
+import java.util.stream.Collectors;
+import clases.*;
 import dao.AtraccionDAO;
 import dao.ItinerarioDAO;
 import dao.PromocionDAO;
@@ -20,6 +20,9 @@ public class App {
 		AtraccionDAO atrac = new AtraccionDAO();
 		ItinerarioDAO itiner = new ItinerarioDAO();
 		Usuario usuarioP = new Usuario();
+		Itinerario itinerP = new Itinerario();
+		Atraccion atracP = new Atraccion();
+
 		usuarioP.setItinerario(null);
 		boolean condicion = true;
 
@@ -36,6 +39,7 @@ public class App {
 		nombreUsuario = sc.nextLine();
 
 		usuarioP = user.encontrarUsuario(nombreUsuario);
+		itinerP = usuarioP.getItinerario();
 		String names = usuarioP.getNombre();
 		Integer eleccion;
 
@@ -57,28 +61,36 @@ public class App {
 			while (iterA.hasNext()) {
 				System.out.println(iterA.next().toString());
 			}
-			
+
 			// Le pide que elija los que quiere comprar y se suman a su itinerario
 			while (condicion) {
 				System.out.println("Ingrese el id de la atraccion que desee comprar: 0 para salir");
 				eleccion = sc.nextInt();
-				
-				// por algún motivo no encuentra que es la misma atraccion
-				
-				System.out.println("Esta es la cantidad de atracciones: " + atrac.mostrarAtracciones().size());
 
-				if ((eleccion < 1) || (eleccion > (atrac.mostrarAtracciones().size()))) { //este lo pasa por alto
-					System.out.println("El numero ingresado es incorrecto");
-				} else if ((usuarioP.getItinerario().getAtracciones()).contains(atrac.encontrarAtraccion(eleccion))) { //acá es donde se produce un error
-					System.out.println("Esta atracción ya forma parte de us itinerario");
-				} else if ((usuarioP.getMonedas() - atrac.encontrarAtraccion(eleccion).getCosto() <= 0)
-						&& (usuarioP.getTiempo() - atrac.encontrarAtraccion(eleccion).getTiempo() <= 0)) {
-					System.out.println("No dispone del presupuesto o tiempo necesario");
-				} else if (eleccion == 0) {
+				if (eleccion == 0) {
+					
 					System.out.println("Gracias por utilizar nuestros servicios");
 					condicion = false;
+
+				} else if ((eleccion < 1) || (eleccion > (atrac.mostrarAtracciones().size()))) {
+
+					System.out.println("El numero ingresado es incorrecto");
+
+				} else if ((itinerP.getAtracciones().get(0).getIdAtraccion())
+						.equals(atrac.encontrarAtraccion(eleccion).getIdAtraccion())) {
+
+					System.out.println("Esta atracción ya forma parte de su itinerario");
+
+				} else if ((usuarioP.getMonedas() <= 0) || (usuarioP.getTiempo() <= 0)
+						|| (atrac.encontrarAtraccion(eleccion).getCosto() > usuarioP.getMonedas())
+						|| (atrac.encontrarAtraccion(eleccion).getTiempo() > usuarioP.getMonedas())) {
+
+					System.out.println("No dispone del presupuesto o tiempo necesario");
+
 				} else {
+					
 					usuarioP.getItinerario().getAtracciones().add(atrac.encontrarAtraccion(eleccion));
+					user.actualizarUsuario(usuarioP.getId(), atrac.encontrarAtraccion(eleccion).getCosto(), atrac.encontrarAtraccion(eleccion).getTiempo());
 					itiner.actualizarItinerario(atrac.encontrarAtraccion(eleccion), usuarioP.getId());
 					atrac.actualizarAtraccion(eleccion);
 					System.out.println("Atracción agregada exitosamente");
@@ -87,7 +99,9 @@ public class App {
 				usuarioP.toString();
 			}
 
-		} else {
+		} else
+
+		{
 			// Esto no funciona porque primero larga la SQLException
 			System.out.println("Ususario incorrecto");
 		}

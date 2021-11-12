@@ -47,7 +47,8 @@ public class ItinerarioDAO {
 		return rows;
 
 	}
-	//Agrega una atraccion al itinerario
+
+	// Agrega una atraccion al itinerario
 	public int agregarAtraccion(Integer idItinerario, Integer idAtraccion) throws SQLException {
 		String sql = "INSERT INTO atraccionesEnIitinerario VALUES(?,?);";
 		Connection conn = ConnectionProvider.getConnection();
@@ -58,7 +59,5 @@ public class ItinerarioDAO {
 		return rows;
 
 	}
-	
-	
 
 }

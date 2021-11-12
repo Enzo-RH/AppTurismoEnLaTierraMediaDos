@@ -1,12 +1,12 @@
 package clases;
 
 public class Atraccion {
-	
+
 	private String nombre;
 	private Integer idAtraccion, costo, cupo;
 	private double tiempo;
 	private String tipo;
-	
+
 	public Atraccion(Integer idAtraccion, String nombre, Integer costo, Integer cupo, Double tiempo, String tipo) {
 		this.idAtraccion = idAtraccion;
 		this.nombre = nombre;
@@ -58,7 +58,7 @@ public class Atraccion {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public Integer getIdAtraccion() {
 		return idAtraccion;
 	}
@@ -69,9 +69,8 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "\n-\nidAtraccion= " + idAtraccion + "\nnombre= "+ nombre + "\ncosto= " + costo + "\ncupo= " + cupo
+		return "\n-\nidAtraccion= " + idAtraccion + "\nnombre= " + nombre + "\ncosto= " + costo + "\ncupo= " + cupo
 				+ "\ntiempo= " + tiempo + "\ntipo= " + tipo;
 	}
-	
 
 }

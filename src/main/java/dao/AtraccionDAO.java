@@ -18,7 +18,8 @@ public class AtraccionDAO {
 
 	// Devuelve todas las atracciones
 	public List<Atraccion> mostrarAtracciones() throws SQLException {
-		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.costo, atraccion.cupo, atraccion.tiempo, tipoAtraccion.nombre FROM atraccion LEFT JOIN tipoAtraccion ON atraccion.id_tipo = tipoAtraccion.idTipo";
+		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.tiempo, atraccion.costo, atraccion.cupo, tipoAtraccion.nombre "
+				+ "FROM atraccion " + "LEFT JOIN tipoAtraccion " + "ON atraccion.id_tipo = tipoAtraccion.idTipo;";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
 		ResultSet resultados = statement.executeQuery();
@@ -33,13 +34,17 @@ public class AtraccionDAO {
 	}
 
 	// Busca una atraccion segun su id y la devuelve
-	public Atraccion encontrarAtraccion(Integer unNumero) throws SQLException {
-		String sql = "SELECT * FROM atraccion WHERE idAtraccion = ?";
+	public Atraccion encontrarAtraccion(Integer idAtraccion) throws SQLException {
+		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.tiempo, atraccion.costo, atraccion.cupo, tipoAtraccion.nombre "
+				+ "FROM atraccion " + "LEFT JOIN tipoAtraccion "
+				+ "ON atraccion.id_tipo = tipoAtraccion.idTipo WHERE atraccion.idAtraccion = ?;";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
-		statement.setInt(1, unNumero);
+		statement.setInt(1, idAtraccion);
 		ResultSet atraccionBD = statement.executeQuery();
-		return aAtraccion(atraccionBD);
+		Atraccion atraccionSola = aAtraccion(atraccionBD);
+
+		return atraccionSola;
 	}
 
 	// Actualiza el tiempo y el presupuesto del usuario
@@ -51,17 +56,17 @@ public class AtraccionDAO {
 		return rows;
 
 	}
-	//Devuelve una lista de atracciones de un itineratrio determinado
+
+	// Devuelve una lista de atracciones de un itineratrio determinado
 	public List<Atraccion> atraccionesDeItienrario(Integer idItinerario) throws SQLException {
-		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.costo, atraccion.cupo, atraccion.tiempo, tipoAtraccion.nombre FROM atraccionesEnItinerario, atraccion, tipoAtraccion" 
-			+	" WHERE atraccionesEnItinerario.id_Atraccion = atraccion.idAtraccion"
-			+	" AND atraccion.id_tipo = tipoAtraccion.idTipo"
-			+	" AND atraccionesEnItinerario.id_Itinerario = ?;";
+		String sql = "SELECT atraccion.idAtraccion, atraccion.nombre, atraccion.costo, atraccion.cupo, atraccion.tiempo, tipoAtraccion.nombre FROM atraccionesEnItinerario, atraccion, tipoAtraccion"
+				+ " WHERE atraccionesEnItinerario.id_Atraccion = atraccion.idAtraccion"
+				+ " AND atraccion.id_tipo = tipoAtraccion.idTipo" + " AND atraccionesEnItinerario.id_Itinerario = ?;";
 		Connection conn = ConnectionProvider.getConnection();
 		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setInt(1, idItinerario);
 		ResultSet resultados = statement.executeQuery();
-		
+
 		List<Atraccion> atraccionesDeItinerario = new LinkedList<Atraccion>();
 
 		while (resultados.next()) {
@@ -71,16 +76,16 @@ public class AtraccionDAO {
 		return atraccionesDeItinerario;
 
 	}
-	
-	// Actualiza el cupo de la atraccion
-		public int actualizarAtraccion(Integer idAtraccion) throws SQLException {
-			String sql = "UPDATE atraccion SET cupo = cupo - 1 WHERE idAtraccion = ?";
-			Connection conn = ConnectionProvider.getConnection();
-			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(1, idAtraccion);
-			Integer rows = statement.executeUpdate();
-			return rows;
 
-		}
-	
+	// Actualiza el cupo de la atraccion
+	public int actualizarAtraccion(Integer idAtraccion) throws SQLException {
+		String sql = "UPDATE atraccion SET cupo = cupo - 1 WHERE idAtraccion = ?";
+		Connection conn = ConnectionProvider.getConnection();
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, idAtraccion);
+		Integer rows = statement.executeUpdate();
+		return rows;
+
+	}
+
 }
